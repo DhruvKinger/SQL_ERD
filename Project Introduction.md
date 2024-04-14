@@ -1,7 +1,3 @@
-# Entity Relationship Diagram (ERD)
-
-## Tables
-
 ### Artist
 
 | Column Name | Description            |
@@ -15,7 +11,10 @@
 |-------------|------------------------|
 | AlbumId     | Unique identifier for each album |
 | Title       | Title of the album     |
-| ArtistId    | Foreign key referencing the artist |
+| ArtistId    | Foreign key referencing the Artist table (ArtistId) |
+
+Relationship:
+- ArtistId in the Album table is a foreign key linked to the ArtistId (primary key) in the Artist table.
 
 ### Track
 
@@ -23,13 +22,18 @@
 |-------------|------------------------|
 | TrackId     | Unique identifier for each track |
 | Name        | Name of the track      |
-| AlbumId     | Foreign key referencing the album |
-| MediaTypeId | Foreign key referencing the media type |
-| GenreId     | Foreign key referencing the genre |
+| AlbumId     | Foreign key referencing the Album table (AlbumId) |
+| MediaTypeId | Foreign key referencing the MediaType table (MediaTypeId) |
+| GenreId     | Foreign key referencing the Genre table (GenreId) |
 | Composer    | Name of the composer   |
 | Milliseconds| Duration of the track in milliseconds |
 | Bytes       | Size of the track in bytes |
 | UnitPrice   | Price of the track     |
+
+Relationships:
+- AlbumId in the Track table is a foreign key linked to the AlbumId (primary key) in the Album table.
+- MediaTypeId in the Track table is a foreign key linked to the MediaTypeId (primary key) in the MediaType table.
+- GenreId in the Track table is a foreign key linked to the GenreId (primary key) in the Genre table.
 
 ### MediaType
 
@@ -38,19 +42,23 @@
 | MediaTypeId | Unique identifier for each media type |
 | Name        | Name of the media type |
 
-### PlayList
+### Playlist
 
 | Column Name | Description            |
 |-------------|------------------------|
-| PlayListId  | Unique identifier for each playlist |
+| PlaylistId  | Unique identifier for each playlist |
 | Name        | Name of the playlist   |
 
-### PlayListTrack
+### PlaylistTrack
 
 | Column Name | Description            |
 |-------------|------------------------|
-| PlayListId  | Foreign key referencing the playlist |
-| TrackId     | Foreign key referencing the track |
+| PlaylistId  | Foreign key referencing the Playlist table (PlaylistId) |
+| TrackId     | Foreign key referencing the Track table (TrackId) |
+
+Relationship:
+- PlaylistId in the PlaylistTrack table is a foreign key linked to the PlaylistId (primary key) in the Playlist table.
+- TrackId in the PlaylistTrack table is a foreign key linked to the TrackId (primary key) in the Track table.
 
 ### Genre
 
@@ -102,17 +110,21 @@
 | Column Name | Description            |
 |-------------|------------------------|
 | InvoiceLineId | Unique identifier for each invoice line |
-| InvoiceId   | Foreign key referencing the invoice |
-| TrackId     | Foreign key referencing the track |
+| InvoiceId   | Foreign key referencing the Invoice table (InvoiceId) |
+| TrackId     | Foreign key referencing the Track table (TrackId) |
 | UnitPrice   | Price per unit of the track |
 | Quantity    | Quantity of tracks purchased in the invoice line |
+
+Relationship:
+- InvoiceId in the InvoiceLine table is a foreign key linked to the InvoiceId (primary key) in the Invoice table.
+- TrackId in the InvoiceLine table is a foreign key linked to the TrackId (primary key) in the Track table.
 
 ### Invoice
 
 | Column Name | Description            |
 |-------------|------------------------|
 | InvoiceId   | Unique identifier for each invoice |
-| CustomerId  | Foreign key referencing the customer |
+| CustomerId  | Foreign key referencing the Customer table (CustomerId) |
 | InvoiceDate | Date of the invoice     |
 | BillingAddress | Billing address of the invoice |
 | BillingCity | Billing city of the invoice |
@@ -120,3 +132,4 @@
 | BillingCountry | Billing country of the invoice |
 | BillingPostalCode | Billing postal code of the invoice |
 | Total       | Total amount of the invoice |
+
